@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    btelegr:
+        build: intel
+        container_name: intel
+        hostname: intel
+        restart: always
+        environment:
+            - USERNAME=
+            - PASSWORD=
+            - MONGO_URI=
+            
+# TODO I exposed all secrets as env variables, please, remove them and regenerate all tokens. Don't keep them in public repository!!!!!
