@@ -7,8 +7,9 @@ services:
         hostname: intel
         restart: always
         environment:
-            - USERNAME=
-            - PASSWORD=
-            - MONGO_URI=
+            -   CHROME_PATH=
+            -   USERNAME=
+            -   PASSWORD=
+            -   MONGO_URI=
             
 # TODO I exposed all secrets as env variables, please, remove them and regenerate all tokens. Don't keep them in public repository!!!!!

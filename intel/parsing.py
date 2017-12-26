@@ -14,7 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 class Intel:
-    def __init__(self, db, login_url, username, password):
+    def __init__(self, db, login_url, username, password, chrome_path):
         self.username = username
         self.password = password
         self.db = db
@@ -24,8 +24,8 @@ class Intel:
         chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
         opts = ChromeOptions()
         opts.add_argument("--headless");
-        opts.binary_location = chrome_bin
-        self.driver = webdriver.Chrome( executable_path="chromedriver", chrome_options=opts)
+        opts.binary_location = chrome_bin        
+        self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
 
     def sign_in(self):
         self.driver.get(self.sign)
@@ -319,10 +319,11 @@ def main():
     URL_INTEL = "https://www.google.com/accounts/ServiceLogin?service=ah&passive=true&continue=https://appengine.google.com/_ah/conflogin%3Fcontinue%3Dhttps://www.ingress.com/intel%253Fll%253D52.436235,30.998523%2526z%253D11"
     USERNAME = os.environ['USERNAME']
     PASSWORD = os.environ['PASSWORD']
-    MONGO_URI = os.environ['MONGO_URI']            
+    MONGO_URI = os.environ['MONGO_URI']    
+    CHROME_PATH = os.environ['CHROME_PATH']       
     client = MongoClient(MONGO_URI)
     db = client.ingressdb 
-    intel = Intel(db, URL_INTEL, USERNAME, PASSWORD)
+    intel = Intel(db, URL_INTEL, USERNAME, PASSWORD, CHROME_PATH)
     intel.sign_in() 
     time.sleep(5)
     while True:        
