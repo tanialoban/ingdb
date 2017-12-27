@@ -8,6 +8,7 @@ RUN mkdir /usr/intel/
 COPY chromedriver /usr/local/lib/python3.5/
 COPY . /usr/intel/
 
+sudo apt-get install chromium-browser
 
 WORKDIR /usr/intel/
 EXPOSE 8350
