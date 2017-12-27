@@ -21,10 +21,10 @@ class Intel:
         self.count = 0
         self.endtable = ''      
         self.sign = login_url
-        chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+        # chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
         opts = ChromeOptions()
         opts.add_argument("--headless");
-        opts.binary_location = chrome_bin        
+        # opts.binary_location = chrome_bin        
         self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
 
     def sign_in(self):
