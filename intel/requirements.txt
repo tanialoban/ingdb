@@ -2,3 +2,4 @@ pymongo
 selenium
 requests
 beautifulsoup4
+pyvirtualdisplay
