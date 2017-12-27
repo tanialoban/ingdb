@@ -22,6 +22,7 @@ class Intel:
         self.endtable = ''      
         self.sign = login_url
         # chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+        os.environ["webdriver.chrome.driver"] = chrome_path
         opts = ChromeOptions()
         opts.add_argument("--headless");
         # opts.binary_location = chrome_bin        
