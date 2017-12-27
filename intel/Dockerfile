@@ -8,7 +8,10 @@ RUN mkdir /usr/intel/
 COPY chromedriver /usr/local/lib/python3.5/
 COPY . /usr/intel/
 
-sudo apt-get install chromium-browser
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+RUN sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+RUN sudo apt-get update
+RUN sudo apt-get install google-chrome-stable
 
 WORKDIR /usr/intel/
 EXPOSE 8350
