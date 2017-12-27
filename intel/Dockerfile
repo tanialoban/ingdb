@@ -15,7 +15,7 @@ COPY chromedriver /usr/local/bin/
 COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/common/
 WORKDIR /usr/intel/
 
-RUN chmod +x /usr/local/lib/python3.5/chromedriver
+RUN chmod +x /usr/bin/webdriver
 
 EXPOSE 8350
 
