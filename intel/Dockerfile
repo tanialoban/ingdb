@@ -1,6 +1,7 @@
 FROM python:3.5.2-alpine
 
 COPY requirements.txt /tmp/
+COPY ../chromedriver /usr/intel
 
 RUN pip3 install --no-cache-dir --disable-pip-version-check -r /tmp/requirements.txt
 
