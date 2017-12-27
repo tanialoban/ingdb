@@ -9,9 +9,10 @@ COPY . /usr/intel/
 
 COPY chromedriver /usr/local/lib/python3.5/
 COPY chromedriver /usr/intel/
-COPY chromedriver /usr/bin/sh/
+COPY chromedriver /usr/bin/
+COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/chrome/
 COPY chromedriver /usr/local/bin/
-
+COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/common/
 WORKDIR /usr/intel/
 EXPOSE 8350
 
