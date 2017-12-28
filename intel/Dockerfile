@@ -17,10 +17,6 @@ COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/comm
 WORKDIR /usr/intel/
 
 USER root
-RUN apt-get update -y \
-    && apt-get -y install build-essential checkinstall git mercurial sudo curl software-properties-common \
-    && apt-get -y install libssl-dev openssh-client openssh-server \
-    && apt-get -y install apt-transport-https ca-certificates zip lsb-release
 
 ENV CHROME_BIN /usr/bin/google-chrome
 
