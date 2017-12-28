@@ -18,7 +18,7 @@ WORKDIR /usr/intel/
 
 USER root
 
-COPY install.sh /usr/bin
+COPY /root/ingdb/install.sh /usr/bin
 RUN chmod +x install.sh
 RUN chmod +x chromedriver
 
