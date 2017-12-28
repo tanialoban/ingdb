@@ -29,8 +29,8 @@ class Intel:
         opts.add_argument("--allow-ra-in-dev-mode");
         opts.add_argument("--disable-permissions-api");
         # opts.binary_location = chrome_bin        
-        self.driver = webdriver.Chrome( chrome_options=opts )
-        # self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
+        # self.driver = webdriver.Chrome( chrome_options=opts )
+        self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
 
     def sign_in(self):
         self.driver.get(self.sign)
