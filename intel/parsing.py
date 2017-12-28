@@ -25,6 +25,9 @@ class Intel:
         os.environ["webdriver.chrome.driver"] = chrome_path
         opts = ChromeOptions()
         opts.add_argument("--headless");
+        opts.add_argument("--always-authorize-plugins");
+        opts.add_argument("--allow-ra-in-dev-mode");
+        opts.add_argument("--disable-permissions-api");
         # opts.binary_location = chrome_bin        
         self.driver = webdriver.Chrome( chrome_options=opts )
         # self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)

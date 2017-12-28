@@ -4,19 +4,19 @@ COPY requirements.txt /tmp/
 
 RUN pip3 install --no-cache-dir --disable-pip-version-check -r /tmp/requirements.txt
 
-USER root
-
 RUN mkdir /usr/intel/
 COPY . /usr/intel/
 
 COPY chromedriver /usr/local/lib/python3.5/
 COPY chromedriver /usr/intel/
+COPY chromedriver /usr/local/lib/
 COPY chromedriver /usr/bin/
 COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/chrome/
 COPY chromedriver /usr/local/bin/
 COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/common/
 WORKDIR /usr/intel/
 
+USER root
 RUN chmod +x /usr/local/lib/python3.5/chromedriver
 
 EXPOSE 8350
