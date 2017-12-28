@@ -4,6 +4,7 @@ import datetime
 import random
 import urllib.request
 import os
+from pyvirtualdisplay import Display
 from pymongo import MongoClient
 from bs4 import BeautifulSoup
 from selenium import webdriver
