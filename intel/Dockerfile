@@ -20,6 +20,7 @@ USER root
 
 ENV CHROME_BIN /usr/bin/google-chrome
 
+RUN chmod +x install.sh
 RUN chmod +x chromedriver
 
 EXPOSE 8350
