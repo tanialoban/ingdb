@@ -14,14 +14,13 @@ COPY chromedriver /usr/bin/
 COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/chrome/
 COPY chromedriver /usr/local/bin/
 COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/common/
-
-COPY install.sh /bin/sh
-RUN chmod +x install.sh
-RUN chmod +x chromedriver
-
 WORKDIR /usr/intel/
 
 USER root
+
+COPY install.sh /usr/bin
+RUN chmod +x install.sh
+RUN chmod +x chromedriver
 
 ENV CHROME_BIN /usr/bin/google-chrome
 EXPOSE 8350
