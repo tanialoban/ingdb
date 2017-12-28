@@ -20,7 +20,6 @@ USER root
 
 ENV CHROME_BIN /usr/bin/google-chrome
 
-RUN apt-get update
 RUN sudo apt-get  install -y xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
 
 ADD xvfb_init /etc/init.d/xvfb
