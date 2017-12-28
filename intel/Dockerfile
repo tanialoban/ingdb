@@ -4,6 +4,8 @@ COPY requirements.txt /tmp/
 
 RUN pip3 install --no-cache-dir --disable-pip-version-check -r /tmp/requirements.txt
 
+USER root
+
 RUN mkdir /usr/intel/
 COPY . /usr/intel/
 
