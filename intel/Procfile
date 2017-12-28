@@ -1,1 +1,1 @@
-web: python parsing.py $1232
+web: python parsing.py

@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-    btelegr:
+    intel:
         build: intel
         container_name: intel
         hostname: intel
