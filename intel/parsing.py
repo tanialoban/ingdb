@@ -22,22 +22,16 @@ class Intel:
         self.count = 0
         self.endtable = ''      
         self.sign = login_url
-        # chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
-        # os.environ["webdriver.chrome.driver"] = chrome_path
-        opts = ChromeOptions()
+        opts = ChromeOptions()        
         opts.add_argument("--headless");
         opts.add_argument("--no-sandbox");
-        # # opts.add_argument("--always-authorize-plugins");
-        # # opts.add_argument("--allow-ra-in-dev-mode");
         opts.add_argument("--disable-gpu");
-        # opts.binary_location = chrome_bin        
-        # self.driver = webdriver.Chrome( chrome_options=opts )
+        opts.binary_location = '/usr/bin/chromium-browser'
+        #All the arguments added for chromium to work on selenium
+        opts.add_argument("--no-default-browser-check") #Overrides default choices
+        opts.add_argument("--no-first-run")
+        opts.add_argument("--disable-default-apps") 
         self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
-        # self.display = Display(visible=0, size=(800, 600))
-        # self.display.start()
-        # self.driver = webdriver.Chrome()
-        # self.driver.get('http://christopher.su')
-        # print(driver.title)
 
     def sign_in(self):
         self.driver.get(self.sign)
@@ -333,6 +327,7 @@ def main():
     PASSWORD = os.environ['PASSWORD']
     MONGO_URI = os.environ['MONGO_URI']    
     CHROME_PATH = os.environ['CHROME_PATH']       
+    os.environ["webdriver.chrome.driver"] = CHROME_PATH
     client = MongoClient(MONGO_URI)
     db = client.ingressdb 
     intel = Intel(db, URL_INTEL, USERNAME, PASSWORD, CHROME_PATH)
