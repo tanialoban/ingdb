@@ -17,8 +17,6 @@ COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/comm
 
 USER root
 
-COPY install.sh /usr/bin
-RUN chmod +x install.sh
 RUN chmod +x chromedriver
 
 WORKDIR /usr/intel/
