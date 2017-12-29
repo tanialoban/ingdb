@@ -24,20 +24,20 @@ class Intel:
         self.sign = login_url
         # chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
         # os.environ["webdriver.chrome.driver"] = chrome_path
-        # opts = ChromeOptions()
-        # opts.add_argument("--headless");
-        # opts.add_argument("--no-sandbox");
+        opts = ChromeOptions()
+        opts.add_argument("--headless");
+        opts.add_argument("--no-sandbox");
         # # opts.add_argument("--always-authorize-plugins");
         # # opts.add_argument("--allow-ra-in-dev-mode");
-        # opts.add_argument("--disable-permissions-api");
+        opts.add_argument("--disable-gpu");
         # opts.binary_location = chrome_bin        
         # self.driver = webdriver.Chrome( chrome_options=opts )
-        # self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
-        self.display = Display(visible=0, size=(800, 600))
-        self.display.start()
-        self.driver = webdriver.Chrome()
-        self.driver.get('http://christopher.su')
-        print(driver.title)
+        self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
+        # self.display = Display(visible=0, size=(800, 600))
+        # self.display.start()
+        # self.driver = webdriver.Chrome()
+        # self.driver.get('http://christopher.su')
+        # print(driver.title)
 
     def sign_in(self):
         self.driver.get(self.sign)
