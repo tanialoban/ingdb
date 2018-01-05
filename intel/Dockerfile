@@ -2,6 +2,8 @@ FROM python:3.5.2-alpine
 
 COPY requirements.txt /tmp/
 
+USER root
+
 RUN pip3 install --no-cache-dir --disable-pip-version-check -r /tmp/requirements.txt
 
 RUN mkdir /usr/intel/
@@ -13,7 +15,6 @@ COPY chromedriver /usr/local/lib/
 COPY chromedriver /usr/bin/
 COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/chrome/
 COPY chromedriver /usr/local/bin/
-COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/common/
 
 USER root
 WORKDIR /usr/intel/
@@ -23,5 +24,5 @@ RUN chmod +x chromedriver
 ENV CHROME_BIN /usr/bin/google-chrome
 EXPOSE 8350
 
-CMD ["python3", "-u", "parsing.py"]
+CMD ["python3", "parsing.py"]
  
