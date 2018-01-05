@@ -22,16 +22,16 @@ class Intel:
         self.count = 0
         self.endtable = ''      
         self.sign = login_url
-        # opts = ChromeOptions()        
-        # opts.add_argument("--headless");
-        # opts.add_argument("--no-sandbox");
-        # opts.add_argument("--disable-gpu");
+        opts = ChromeOptions()        
+        opts.add_argument("--headless");
+        opts.add_argument("--no-sandbox");
+        opts.add_argument("--disable-gpu");
         # opts.binary_location = '/usr/bin/chromium-browser'
-        # #All the arguments added for chromium to work on selenium
+        # # #All the arguments added for chromium to work on selenium
         # opts.add_argument("--no-default-browser-check") #Overrides default choices
         # opts.add_argument("--no-first-run")
         # opts.add_argument("--disable-default-apps") 
-        self.driver = webdriver.Chrome( ) #executable_path=chrome_path, chrome_options=opts)
+        self.driver = webdriver.Chrome( chrome_options=opts )
 
     def sign_in(self):
         self.driver.get(self.sign)
