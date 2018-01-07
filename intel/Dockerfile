@@ -14,8 +14,8 @@ WORKDIR /usr/intel/
 COPY chromedriver /usr/bin/
 COPY chromedriver /usr/local/bin/
 COPY chromedriver /usr/local/
+COPY chromedriver /usr/intel/
 
-USER admin
 RUN chmod +x chromedriver
 
 EXPOSE 8350
