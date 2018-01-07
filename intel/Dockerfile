@@ -17,6 +17,7 @@ COPY geckodriver /usr/local/bin/
 COPY geckodriver /usr/local/
 
 USER root
+RUN sudo chmod +x geckodriver
 
 EXPOSE 8350
 
