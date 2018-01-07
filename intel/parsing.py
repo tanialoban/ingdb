@@ -14,6 +14,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 class Intel:
     def __init__(self, db, login_url, username, password, chrome_path):
@@ -26,8 +27,7 @@ class Intel:
         # firefox_capabilities = DesiredCapabilities.FIREFOX
         # firefox_capabilities['marionette'] = True
         # firefox_capabilities['binary'] = '/usr/bin/firefox'
-        print(chrome_path)
-        self.driver = webdriver.Firefox(executable_path='/usr/bin/geckodriver')
+        self.driver = webdriver.Firefox()#executable_path='/usr/bin/geckodriver')
         # self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
 
     def sign_in(self):
