@@ -26,6 +26,8 @@ class Intel:
         chrome_options = ChromeOptions()  
         chrome_options.add_argument("--headless")  
         chrome_options.binary_location = chrome_path
+        print(chrome_path)
+        print(chromedriver_path)
         self.driver = webdriver.Chrome(executable_path=chromedriver_path,   chrome_options=chrome_options )  
 
     def sign_in(self):
