@@ -324,7 +324,7 @@ def main():
     PASSWORD = os.environ['PASSWORD']
     MONGO_URI = os.environ['MONGO_URI']    
     CHROME_PATH = os.environ['CHROME_PATH'] 
-    CHROMEDRIVER_PATH = os.environ['CHROME_PATH'] 
+    CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH'] 
     os.environ["webdriver.chrome.driver"] = CHROME_PATH
     client = MongoClient(MONGO_URI)
     db = client.ingressdb 
