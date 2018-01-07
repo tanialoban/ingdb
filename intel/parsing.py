@@ -23,10 +23,11 @@ class Intel:
         self.count = 0
         self.endtable = ''      
         self.sign = login_url
-        firefox_capabilities = DesiredCapabilities.FIREFOX
-        firefox_capabilities['marionette'] = True
-        firefox_capabilities['binary'] = '/usr/bin/firefox'
-        self.driver = webdriver.Firefox(capabilities=firefox_capabilities)
+        # firefox_capabilities = DesiredCapabilities.FIREFOX
+        # firefox_capabilities['marionette'] = True
+        # firefox_capabilities['binary'] = '/usr/bin/firefox'
+        print(chrome_path)
+        self.driver = webdriver.Firefox(executable_path='/usr/bin/geckodriver')
         # self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
 
     def sign_in(self):
