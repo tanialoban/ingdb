@@ -25,7 +25,7 @@ class Intel:
         self.sign = login_url
         chrome_options = ChromeOptions()  
         chrome_options.add_argument("--headless")  
-        chrome_options.binary_location = CHROME_P
+        chrome_options.binary_location = '/usr/bin/'
         self.driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH,   chrome_options=chrome_options )  
 
     def sign_in(self):
