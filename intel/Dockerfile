@@ -9,19 +9,17 @@ RUN pip3 install --no-cache-dir --disable-pip-version-check -r /tmp/requirements
 RUN mkdir /usr/intel/
 COPY . /usr/intel/
 
-COPY chromedriver /usr/local/lib/python3.5/
-COPY chromedriver /usr/intel/
-COPY chromedriver /usr/local/lib/
-COPY chromedriver /usr/bin/
-COPY chromedriver /usr/local/lib/python3.5/site-packages/selenium/webdriver/chrome/
-COPY chromedriver /usr/local/bin/
+COPY geckodriver /usr/bin/
+COPY geckodriver /usr/local/bin/
+COPY geckodriver /usr/local/
 
 USER root
 WORKDIR /usr/intel/
 
-RUN chmod +x chromedriver
+RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux64.tar.gz
 
-ENV CHROME_BIN /usr/bin/google-chrome
+RUN chmod +x geckodriver
+
 EXPOSE 8350
 
 CMD ["python3", "parsing.py"]

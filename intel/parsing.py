@@ -12,6 +12,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 class Intel:
@@ -22,16 +23,11 @@ class Intel:
         self.count = 0
         self.endtable = ''      
         self.sign = login_url
-        opts = ChromeOptions()        
-        opts.add_argument("--headless");
-        opts.add_argument("--no-sandbox");
-        opts.add_argument("--disable-gpu");
-        # opts.binary_location = '/usr/bin/chromium-browser'
-        # # #All the arguments added for chromium to work on selenium
-        # opts.add_argument("--no-default-browser-check") #Overrides default choices
-        # opts.add_argument("--no-first-run")
-        # opts.add_argument("--disable-default-apps") 
-        self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
+        firefox_capabilities = DesiredCapabilities.FIREFOX
+        firefox_capabilities['marionette'] = True
+        firefox_capabilities['binary'] = '/usr/bin/firefox'
+        self.driver = webdriver.Firefox(capabilities=firefox_capabilities)
+        # self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
 
     def sign_in(self):
         self.driver.get(self.sign)
