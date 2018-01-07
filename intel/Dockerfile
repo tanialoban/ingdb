@@ -11,6 +11,7 @@ COPY . /usr/intel/
 
 WORKDIR /usr/intel/
 
+COPY geckodriver /usr/intel/
 COPY geckodriver /usr/bin/
 COPY geckodriver /usr/local/bin/
 COPY geckodriver /usr/local/
