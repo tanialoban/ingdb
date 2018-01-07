@@ -11,7 +11,6 @@ COPY . /usr/intel/
 
 WORKDIR /usr/intel/
 
-COPY chromedriver /usr/intel/
 COPY chromedriver /usr/bin/
 COPY chromedriver /usr/local/bin/
 COPY chromedriver /usr/local/
