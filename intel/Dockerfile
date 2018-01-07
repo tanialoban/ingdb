@@ -9,12 +9,11 @@ RUN pip3 install --no-cache-dir --disable-pip-version-check -r /tmp/requirements
 RUN mkdir /usr/intel/
 COPY . /usr/intel/
 
+WORKDIR /usr/intel/
+
 COPY geckodriver /usr/bin/
 COPY geckodriver /usr/local/bin/
 COPY geckodriver /usr/local/
-
-USER root
-WORKDIR /usr/intel/
 
 RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux64.tar.gz
 
