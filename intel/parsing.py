@@ -14,7 +14,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 class Intel:
     def __init__(self, db, login_url, username, password, chrome_path):
@@ -24,11 +23,10 @@ class Intel:
         self.count = 0
         self.endtable = ''      
         self.sign = login_url
-        # firefox_capabilities = DesiredCapabilities.FIREFOX
-        # firefox_capabilities['marionette'] = True
-        # firefox_capabilities['binary'] = '/usr/bin/firefox'
-        self.driver = webdriver.Firefox()#executable_path='/usr/bin/geckodriver')
-        # self.driver = webdriver.Chrome( executable_path=chrome_path, chrome_options=opts)
+        chrome_options = ChromeOptions()  
+        chrome_options.add_argument("--headless")  
+        chrome_options.binary_location = CHROME_P
+        self.driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH,   chrome_options=chrome_options )  
 
     def sign_in(self):
         self.driver.get(self.sign)
@@ -323,7 +321,7 @@ def main():
     USERNAME = os.environ['USERNAME']
     PASSWORD = os.environ['PASSWORD']
     MONGO_URI = os.environ['MONGO_URI']    
-    CHROME_PATH = os.environ['CHROME_PATH']       
+    CHROME_PATH = os.environ['CHROME_PATH'] 
     os.environ["webdriver.chrome.driver"] = CHROME_PATH
     client = MongoClient(MONGO_URI)
     db = client.ingressdb 

@@ -11,13 +11,13 @@ COPY . /usr/intel/
 
 WORKDIR /usr/intel/
 
-COPY geckodriver /usr/intel/
-COPY geckodriver /usr/bin/
-COPY geckodriver /usr/local/bin/
-COPY geckodriver /usr/local/
+COPY chromedriver /usr/intel/
+COPY chromedriver /usr/bin/
+COPY chromedriver /usr/local/bin/
+COPY chromedriver /usr/local/
 
-USER root
-RUN chmod +x geckodriver
+USER admin
+RUN chmod +x chromedriver
 
 EXPOSE 8350
 
