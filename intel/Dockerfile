@@ -15,8 +15,6 @@ COPY geckodriver /usr/bin/
 COPY geckodriver /usr/local/bin/
 COPY geckodriver /usr/local/
 
-RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux64.tar.gz
-
 RUN chmod +x geckodriver
 
 EXPOSE 8350
