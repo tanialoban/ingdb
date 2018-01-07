@@ -16,7 +16,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 class Intel:
-    def __init__(self, db, login_url, username, password, chrome_path):
+    def __init__(self, db, login_url, username, password, chrome_path, chromedriver_path):
         self.username = username
         self.password = password
         self.db = db
@@ -25,8 +25,8 @@ class Intel:
         self.sign = login_url
         chrome_options = ChromeOptions()  
         chrome_options.add_argument("--headless")  
-        chrome_options.binary_location = '/usr/bin/'
-        self.driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH,   chrome_options=chrome_options )  
+        chrome_options.binary_location = chrome_path
+        self.driver = webdriver.Chrome(executable_path=chromedriver_path,   chrome_options=chrome_options )  
 
     def sign_in(self):
         self.driver.get(self.sign)
@@ -322,10 +322,11 @@ def main():
     PASSWORD = os.environ['PASSWORD']
     MONGO_URI = os.environ['MONGO_URI']    
     CHROME_PATH = os.environ['CHROME_PATH'] 
+    CHROMEDRIVER_PATH = os.environ['CHROME_PATH'] 
     os.environ["webdriver.chrome.driver"] = CHROME_PATH
     client = MongoClient(MONGO_URI)
     db = client.ingressdb 
-    intel = Intel(db, URL_INTEL, USERNAME, PASSWORD, CHROME_PATH)
+    intel = Intel(db, URL_INTEL, USERNAME, PASSWORD, CHROME_PATH, CHROMEDRIVER_PATH)
     intel.sign_in() 
     time.sleep(5)
     while True:        
