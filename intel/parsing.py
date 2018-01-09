@@ -22,15 +22,15 @@ class Intel:
         self.db = db
         self.count = 0
         self.endtable = ''      
-        self.sign = login_url
+        self.sign = login_url 
         chrome_options = ChromeOptions()  
         chrome_options.add_argument("--headless")  
-        chrome_options.binary_location = chrome_path
-        print(chrome_path)
-        print(chromedriver_path)
-        self.driver = webdriver.Chrome(executable_path=chromedriver_path,   chrome_options=chrome_options )  
+        self.driver = webdriver.Chrome( chrome_options=chrome_options )  
+        print('initialization...')
 
     def sign_in(self):
+        print(self.sign)
+        time.sleep(5)
         self.driver.get(self.sign)
         WebDriverWait(self.driver, 25).until(
             EC.presence_of_element_located((By.ID, "identifierId"))
@@ -44,6 +44,7 @@ class Intel:
             EC.presence_of_element_located((By.ID, "password"))
         )
         time.sleep(3)
+        print('login + password...')
         password = self.driver.find_element_by_name("password")
         password.send_keys(self.password)
         self.driver.find_element_by_id("passwordNext").click()
@@ -51,6 +52,7 @@ class Intel:
         WebDriverWait(self.driver, 28).until(
             EC.presence_of_element_located((By.ID, "plexts"))
         )
+        print('sign_in finish...')
 
     def find_port(self, name, lat, lng, portals, player):
         cursor = portals.find({ "name": name, "lat": lat, 'lng': lng })    
@@ -137,25 +139,26 @@ class Intel:
         url = "https://www.ingress.com/intel?pll={},{}&z=11&pll={},{}".format(lat,lng,lat,lng)
         try:
             self.driver.get(url)
-            time.sleep(2)
+            portals = self.db['portals']
+            players = self.db['players']
+            mods = self.db['portals.mods']
+            resrs = self.db['portals.resonators']   
+            time.sleep(5)
             try:
                 WebDriverWait(self.driver, 60).until(
                     EC.presence_of_element_located((By.ID, "portal_details_container"))
                 )
             except TimeoutError:
-                print("timeout error exception")   
-            portals = self.db['portals']
-            players = self.db['players']
-            mods = self.db['portals.mods']
-            resrs = self.db['portals.resonators']   
-
+                print("timeout error exception")        
             soup = BeautifulSoup(self.driver.page_source, "html.parser")   
             time.sleep(5)       
             table = soup.find('div', { 'class', 'portal_details_container_captured' })
             title = table.find('div', {'id': 'portal_primary_title'}).text
             level = table.find('div', {'id': 'portal_level'}).text
             owner = table.find('div', id='portal_capture_details').find('span').text
+            
             while owner == 'loading...':
+                print('......loading.....')
                 soup = BeautifulSoup(self.driver.page_source, "html.parser")   
                 time.sleep(10)       
                 table = soup.find('div', { 'class', 'portal_details_container_captured' })
@@ -319,12 +322,6 @@ class Intel:
             print(ind + "=" + lat + "-"+lng)
 
 def main():   
-    URL_INTEL = "https://www.google.com/accounts/ServiceLogin?service=ah&passive=true&continue=https://appengine.google.com/_ah/conflogin%3Fcontinue%3Dhttps://www.ingress.com/intel%253Fll%253D52.436235,30.998523%2526z%253D11"
-    USERNAME = os.environ['USERNAME']
-    PASSWORD = os.environ['PASSWORD']
-    MONGO_URI = os.environ['MONGO_URI']    
-    CHROME_PATH = os.environ['CHROME_PATH'] 
-    CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH'] 
     os.environ["webdriver.chrome.driver"] = CHROME_PATH
     client = MongoClient(MONGO_URI)
     db = client.ingressdb 
@@ -334,9 +331,9 @@ def main():
     while True:        
         intel.get_result()     
         time.sleep(10)
-        if intel.count > 3:
+        if intel.count > 5:
             intel.compare_portal(db)
-            time.sleep(800)    
+            time.sleep(200)    
  
 if __name__ == '__main__':  
     main()
